@@ -28,19 +28,12 @@ for x in pie_data:
 print(labels)
 print(sizes)
 
-# labels = pie_data["company"](0:2)]
-# sizes = pie_data["market share"]
-
-#labels = ["Company X", "Company Y", "Company Z"]
-#sizes = [.55, .30, .15]
 
 fig1, ax1 = plt.subplots()
 ax1.pie(sizes, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
 ax1.axis("equal")  # Equal aspect ratio ensures that pie is drawn as a circle.
 
 plt.show() # need to explicitly "show" the chart window
-
-exit()
 
 # #
 # # CHART 2 (LINE)
@@ -66,17 +59,14 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Data for plotting
-# t = np.arange(0.0, 2.0, 0.01)
-# s = 1 + np.sin(2 * np.pi * t)
-
-# breakpoint()
-
-t = [1,2,3,4,5]
-s = [5,10,15,20,25]
+x = []
+y =[]
+for i in line_data:  
+     x.append(i["date"])
+     y.append(i["stock_price_usd"])
 
 fig, ax = plt.subplots()
-ax.plot(t, s)
+ax.plot(x, y)
 
 ax.set(xlabel='date', ylabel='stock_price (usd)',
        title='Daily Stock Prices')
@@ -99,8 +89,17 @@ bar_data = [
     {"genre": "Romantic Comedy", "viewers": 121212}
 ]
 
-# print("----------------")
-# print("GENERATING BAR CHART...")
-# print(bar_data) # TODO: create a horizontal bar chart based on the bar_data
+print("----------------")
+print("GENERATING BAR CHART...")
+print(bar_data) # TODO: create a horizontal bar chart based on the bar_data
 
+import plotly.graph_objects as go
 
+x = []
+y = []
+for i in bar_data:  
+     x.append(i["viewers"])
+     y.append(i["genre"])
+fig = go.Figure(go.Bar(x=x, y=y, orientation='h'))
+
+fig.show()
